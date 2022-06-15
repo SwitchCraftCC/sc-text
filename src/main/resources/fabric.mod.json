@@ -1,0 +1,37 @@
+{
+  "schemaVersion": 1,
+  "id": "sc-text",
+  "version": "${version}",
+
+  "name": "SwitchCraft Text Utility",
+  "description": "Required companion mod for the SwitchCraft Minecraft server. This mod is for exclusive distribution by the SwitchCraft Modpack. All rights reserved.",
+  "authors": [
+    "SwitchCraft",
+    "Lemmmy"
+  ],
+  "contact": {
+    "homepage": "https://switchcraft.pw/"
+  },
+
+  "license": "UNLICENSED",
+
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "pw.switchcraft.text.Text"
+      }
+    ]
+  },
+  "mixins": [
+    "sc-text.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_target_version}",
+    "java": ">=17",
+    "fabric-language-kotlin": ">=${fabric_kotlin_version}"
+  }
+}
