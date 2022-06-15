@@ -24,6 +24,7 @@ fun String.urlToText(contents: Text? = null): MutableText {
     .hover(of("Click to visit $this", AQUA))
     .openUrl(this)
 }
+
 fun URL.toText(contents: Text? = null): MutableText = toString().urlToText(contents)
 
 // Date formatting - TODO: Add more formats, utilities for Text with hover (give full ISO-8601 timestamp)

@@ -1,5 +1,7 @@
 package pw.switchcraft.text
 
+import com.mojang.brigadier.context.CommandContext
+import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.ClickEvent
 import net.minecraft.text.ClickEvent.Action.*
 import net.minecraft.text.HoverEvent
@@ -10,18 +12,21 @@ import net.minecraft.text.MutableText
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import net.minecraft.util.Formatting.DARK_GREEN
+import pw.switchcraft.text.CallbackCommand.makeCommand
 import java.net.URL
 
-fun of(text: String?, vararg formatting: Formatting): MutableText
-    = Text.literal(text ?: "").formatted(*formatting)
+fun of(text: String?, vararg formatting: Formatting): MutableText = Text.literal(text ?: "").formatted(*formatting)
 
 operator fun MutableText.plus(other: Text): MutableText = append(other)
-operator fun MutableText.plusAssign(other: Text) { append(other) }
+operator fun MutableText.plusAssign(other: Text) {
+  append(other)
+}
 
-fun <T> MutableText.hoverEvent(action: HoverEvent.Action<T>, value: T): MutableText
-    = styled { it.withHoverEvent(if (value != null) HoverEvent(action, value) else null) }
-fun MutableText.clickEvent(action: ClickEvent.Action, value: String?): MutableText
-    = styled { it.withClickEvent(if (value != null) ClickEvent(action, value) else null) }
+fun <T> MutableText.hoverEvent(action: HoverEvent.Action<T>, value: T): MutableText =
+  styled { it.withHoverEvent(if (value != null) HoverEvent(action, value) else null) }
+
+fun MutableText.clickEvent(action: ClickEvent.Action, value: String?): MutableText =
+  styled { it.withClickEvent(if (value != null) ClickEvent(action, value) else null) }
 
 // HoverEvent wrappers
 fun MutableText.hover(hover: Text?): MutableText = hoverEvent(SHOW_TEXT, hover)
@@ -41,10 +46,12 @@ fun MutableText.copyToClipboard(text: String?): MutableText = clickEvent(COPY_TO
 fun MutableText.shiftInsertText(text: String?): MutableText = styled { it.withInsertion(text) }
 fun MutableText.color(color: Int): MutableText = styled { it.withColor(color) }
 
-fun MutableText.copyable(clipboardText: String? = this.string)
-    = hover(copyHint()).copyToClipboard(clipboardText)
-fun copyable(text: String?, vararg formatting: Formatting, clipboardText: String? = text): MutableText
-    = of(text, *formatting).hover(copyHint()).copyToClipboard(clipboardText)
+fun MutableText.copyable(clipboardText: String? = this.string) = hover(copyHint()).copyToClipboard(clipboardText)
+fun copyable(text: String?, vararg formatting: Formatting, clipboardText: String? = text): MutableText =
+  of(text, *formatting).hover(copyHint()).copyToClipboard(clipboardText)
+
+fun MutableText.callback(callback: (CommandContext<ServerCommandSource>) -> Unit): MutableText =
+  runCommand(makeCommand(callback))
 
 // Common text patterns
 fun success(): MutableText = of("Success! ", DARK_GREEN)
