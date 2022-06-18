@@ -2,14 +2,11 @@ package pw.switchcraft.text
 
 import com.mojang.brigadier.context.CommandContext
 import net.minecraft.server.command.ServerCommandSource
-import net.minecraft.text.ClickEvent
+import net.minecraft.text.*
 import net.minecraft.text.ClickEvent.Action.*
-import net.minecraft.text.HoverEvent
 import net.minecraft.text.HoverEvent.Action.*
 import net.minecraft.text.HoverEvent.EntityContent
 import net.minecraft.text.HoverEvent.ItemStackContent
-import net.minecraft.text.MutableText
-import net.minecraft.text.Text
 import net.minecraft.util.Formatting
 import net.minecraft.util.Formatting.DARK_GREEN
 import pw.switchcraft.text.CallbackCommand.makeCommand
@@ -18,9 +15,9 @@ import java.net.URL
 fun of(text: String?, vararg formatting: Formatting): MutableText = Text.literal(text ?: "").formatted(*formatting)
 
 operator fun MutableText.plus(other: Text): MutableText = append(other)
-operator fun MutableText.plusAssign(other: Text) {
-  append(other)
-}
+operator fun MutableText.plus(other: String): MutableText = append(other)
+operator fun MutableText.plusAssign(other: Text) { append(other) }
+operator fun MutableText.plusAssign(other: String) { append(other) }
 
 fun <T> MutableText.hoverEvent(action: HoverEvent.Action<T>, value: T): MutableText =
   styled { it.withHoverEvent(if (value != null) HoverEvent(action, value) else null) }
@@ -45,6 +42,8 @@ fun MutableText.copyToClipboard(text: String?): MutableText = clickEvent(COPY_TO
 // Other style wrappers
 fun MutableText.shiftInsertText(text: String?): MutableText = styled { it.withInsertion(text) }
 fun MutableText.color(color: Int): MutableText = styled { it.withColor(color) }
+fun MutableText.color(color: Formatting?): MutableText = styled { it.withColor(color) }
+fun MutableText.color(color: TextColor?): MutableText = styled { it.withColor(color) }
 
 fun MutableText.copyable(clipboardText: String? = this.string) = hover(copyHint()).copyToClipboard(clipboardText)
 fun copyable(text: String?, vararg formatting: Formatting, clipboardText: String? = text): MutableText =

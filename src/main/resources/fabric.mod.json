@@ -26,6 +26,7 @@
   "mixins": [
     "sc-text.mixins.json"
   ],
+  "accessWidener": "sc-text.accesswidener",
 
   "depends": {
     "fabricloader": ">=${loader_version}",

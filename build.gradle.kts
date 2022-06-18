@@ -68,4 +68,8 @@ tasks {
         exclude("META-INF/INDEX.LIST", "META-INF/*.SF", "META-INF/*.DSA", "META-INF/*.RSA", "module-info.class")
         destinationDirectory.set(file("${rootDir}/build/final"))
     }
+
+    loom {
+        accessWidenerPath.set(file("src/main/resources/sc-text.accesswidener"))
+    }
 }
