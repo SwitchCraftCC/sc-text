@@ -45,7 +45,8 @@ fun MutableText.color(color: Int): MutableText = styled { it.withColor(color) }
 fun MutableText.color(color: Formatting?): MutableText = styled { it.withColor(color) }
 fun MutableText.color(color: TextColor?): MutableText = styled { it.withColor(color) }
 
-fun MutableText.copyable(clipboardText: String? = this.string) = hover(copyHint()).copyToClipboard(clipboardText)
+fun MutableText.copyable(clipboardText: String? = this.string): MutableText =
+  hover(copyHint()).copyToClipboard(clipboardText)
 fun copyable(text: String?, vararg formatting: Formatting, clipboardText: String? = text): MutableText =
   of(text, *formatting).hover(copyHint()).copyToClipboard(clipboardText)
 

@@ -3,11 +3,13 @@ package pw.switchcraft.text
 import net.minecraft.text.MutableText
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting.*
+import org.apache.commons.lang3.time.DurationFormatUtils
 import java.net.URL
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
 import java.util.regex.Pattern
+import kotlin.math.abs
 
 // Extensions to convert other objects to Text
 
@@ -30,6 +32,11 @@ fun URL.toText(contents: Text? = null): MutableText = toString().urlToText(conte
 // Date formatting - TODO: Add more formats, utilities for Text with hover (give full ISO-8601 timestamp)
 val DATE_FORMAT_LONG: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z")
 fun ZonedDateTime.formatScLong(): String = format(DATE_FORMAT_LONG)
+
+fun ZonedDateTime.formatDurationWords(): String {
+  val duration = abs(toInstant().toEpochMilli() - ZonedDateTime.now().toInstant().toEpochMilli())
+  return DurationFormatUtils.formatDurationWords(duration, true, true)
+}
 
 // This one isn't strictly Text, but it's very often useful anyway
 fun tryParseUuid(string: String): UUID? = try {
