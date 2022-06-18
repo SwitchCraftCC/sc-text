@@ -37,3 +37,5 @@ fun tryParseUuid(string: String): UUID? = try {
 } catch (e: IllegalArgumentException) {
   null
 }
+
+fun String.plural(count: Int, plural: String = this + "s"): String = if (count == 1) this else plural
