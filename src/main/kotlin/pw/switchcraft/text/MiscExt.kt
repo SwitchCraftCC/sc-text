@@ -1,8 +1,11 @@
 package pw.switchcraft.text
 
+import com.google.gson.GsonBuilder
 import net.minecraft.text.MutableText
+import net.minecraft.text.Style
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting.*
+import net.minecraft.util.LowercaseEnumTypeAdapterFactory
 import org.apache.commons.lang3.time.DurationFormatUtils
 import java.net.URL
 import java.time.ZonedDateTime
@@ -46,3 +49,11 @@ fun tryParseUuid(string: String): UUID? = try {
 }
 
 fun String.plural(count: Int, plural: String = this + "s"): String = if (count == 1) this else plural
+
+// Based on the default Minecraft Text type adapter, Text.Serializer.GSON
+fun GsonBuilder.registerMinecraftTextAdapter(): GsonBuilder = apply {
+  disableHtmlEscaping()
+  registerTypeHierarchyAdapter(Text::class.java, Text.Serializer())
+  registerTypeHierarchyAdapter(Style::class.java, Style.Serializer())
+  registerTypeAdapterFactory(LowercaseEnumTypeAdapterFactory())
+}
