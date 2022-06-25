@@ -8,6 +8,7 @@ import net.minecraft.util.Formatting.*
 import net.minecraft.util.LowercaseEnumTypeAdapterFactory
 import org.apache.commons.lang3.time.DurationFormatUtils
 import java.net.URL
+import java.net.URLEncoder
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -49,6 +50,8 @@ fun tryParseUuid(string: String): UUID? = try {
 }
 
 fun String.plural(count: Int, plural: String = this + "s"): String = if (count == 1) this else plural
+
+fun String.urlEncode(): String = URLEncoder.encode(this, "UTF-8")
 
 // Based on the default Minecraft Text type adapter, Text.Serializer.GSON
 fun GsonBuilder.registerMinecraftTextAdapter(): GsonBuilder = apply {
