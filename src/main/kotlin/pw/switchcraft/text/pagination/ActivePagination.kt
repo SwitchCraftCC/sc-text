@@ -23,7 +23,7 @@ abstract class ActivePagination(
   private val linesPerPage: Int = 20
 ) {
   internal val id = UUID.randomUUID()
-  protected var currentPage = 1;
+  protected var currentPage = 1
 
   private val titleCentered = if (title != null) FontCalculator.center(title, padding) else null
 
