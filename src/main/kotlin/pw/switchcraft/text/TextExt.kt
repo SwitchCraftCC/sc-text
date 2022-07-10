@@ -8,7 +8,7 @@ import net.minecraft.text.HoverEvent.Action.*
 import net.minecraft.text.HoverEvent.EntityContent
 import net.minecraft.text.HoverEvent.ItemStackContent
 import net.minecraft.util.Formatting
-import net.minecraft.util.Formatting.DARK_GREEN
+import net.minecraft.util.Formatting.*
 import pw.switchcraft.text.CallbackCommand.makeCommand
 import java.net.URL
 
@@ -49,6 +49,14 @@ fun MutableText.copyable(clipboardText: String? = this.string): MutableText =
   hover(copyHint()).copyToClipboard(clipboardText)
 fun copyable(text: String?, vararg formatting: Formatting, clipboardText: String? = text): MutableText =
   of(text, *formatting).hover(copyHint()).copyToClipboard(clipboardText)
+
+val linkFormatting = arrayOf(UNDERLINE, BLUE)
+fun openableLink(text: String?, vararg formatting: Formatting = linkFormatting, link: String? = text): MutableText =
+  of(text, *formatting).openUrl(link).hover(of("Click to visit: ") + of(link, AQUA))
+fun runnableCommand(text: String?, vararg formatting: Formatting = linkFormatting, cmd: String? = text): MutableText =
+  of(text, *formatting).runCommand(cmd).hover(of("Click to run: ") + of(cmd, AQUA))
+fun suggestedCommand(text: String?, vararg formatting: Formatting = linkFormatting, cmd: String? = text): MutableText =
+  of(text, *formatting).suggestCommand(cmd).hover(of("Click to suggest: ") + of(cmd, AQUA))
 
 fun MutableText.callback(callback: (CommandContext<ServerCommandSource>) -> Unit): MutableText =
   runCommand(makeCommand(callback))
