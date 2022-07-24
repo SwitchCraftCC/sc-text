@@ -11,7 +11,7 @@ import net.minecraft.server.command.CommandManager.argument
 import net.minecraft.server.command.CommandManager.literal
 import net.minecraft.server.command.ServerCommandSource
 import java.time.Duration
-import java.util.*
+import java.util.UUID
 
 typealias Callback = (CommandContext<ServerCommandSource>) -> Unit
 
@@ -26,14 +26,14 @@ object CallbackCommand {
     return id
   }
 
-  fun makeCommand(callback: Callback) = register(callback).let { "sc-text:callback $it" }
+  fun makeCommand(callback: Callback) = register(callback).let { "/sc-text:callback $it" }
 
   internal fun register(dispatcher: CommandDispatcher<ServerCommandSource?>) {
     dispatcher.register(literal("sc-text:callback")
       .then(argument("id", UuidArgumentType.uuid())
         .executes {
           val id = getUuid(it, "id")
-          callbacks.getIfPresent(id)?.invoke(it).let { SINGLE_SUCCESS }
+          callbacks.getIfPresent(id)?.invoke(it).let { callbacks.invalidate(id); SINGLE_SUCCESS }
         }))
   }
 }
