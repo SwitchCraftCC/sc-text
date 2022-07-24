@@ -12,6 +12,7 @@ import net.minecraft.util.Formatting.*
 import pw.switchcraft.text.CallbackCommand.makeCommand
 import java.net.URL
 
+fun of(text: String?, formatting: List<Formatting>): MutableText = of(text, *formatting.toTypedArray())
 fun of(text: String?, vararg formatting: Formatting): MutableText = Text.literal(text ?: "").formatted(*formatting)
 
 operator fun MutableText.plus(other: Text): MutableText = append(other)
