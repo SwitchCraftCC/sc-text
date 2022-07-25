@@ -63,5 +63,5 @@ fun MutableText.callback(callback: (CommandContext<ServerCommandSource>) -> Unit
   runCommand(makeCommand(callback))
 
 // Common text patterns
-fun success(): MutableText = of("Success! ", DARK_GREEN)
+fun success(): MutableText = of("", GREEN) + of("Success! ", DARK_GREEN)
 fun copyHint(): MutableText = of("Click to copy to clipboard.")
