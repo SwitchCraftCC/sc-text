@@ -32,7 +32,7 @@ class Pagination(
       ListPagination(src, ImmutableList.copyOf(counts), title, header, footer, padding, linesPerPage)
     } else {
       IterablePagination(src, counts, title, header, footer, padding, linesPerPage)
-    } ?: return
+    }
 
     PaginationHandler.paginationState(src, true).put(pagination)
     pagination.specificPage(page)
