@@ -7,13 +7,12 @@ import com.mojang.brigadier.arguments.StringArgumentType.getString
 import com.mojang.brigadier.arguments.StringArgumentType.greedyString
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.render.*
 import net.minecraft.client.util.math.MatrixStack
-import net.minecraft.server.command.CommandManager.argument
-import net.minecraft.server.command.CommandManager.literal
-import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.util.Formatting.GREEN
 import pw.switchcraft.text.of
 
@@ -88,15 +87,15 @@ object GlyphSizesTest {
     }
   }
 
-  internal fun register(dispatcher: CommandDispatcher<ServerCommandSource>) {
-    dispatcher.register(literal("sc_text:test_glyph_sizes")
-      .then(argument("text", greedyString())
+  internal fun register(dispatcher: CommandDispatcher<FabricClientCommandSource>) {
+    dispatcher.register(ClientCommandManager.literal("sc-text:test_glyph_sizes")
+      .then(ClientCommandManager.argument("text", greedyString())
         .executes {
           val text = getString(it, "text")
           toggle(text)
 
           val out = FontCalculator.center(of(text, GREEN))
-          it.source.sendFeedback(out, false)
+          it.source.sendFeedback(out)
 
           Command.SINGLE_SUCCESS
         })

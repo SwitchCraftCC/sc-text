@@ -85,6 +85,10 @@ object FontCalculator {
     }
     val padStyle = padding.style
 
+    if (padWidth == 0) {
+      throw IllegalArgumentException("Padding character has width 0")
+    }
+
     val out = of("")
 
     if (width == 0) { // Only padding wanted, no inner text
