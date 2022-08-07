@@ -51,6 +51,7 @@ fun tryParseUuid(string: String): UUID? = try {
 
 fun String.plural(count: Int, plural: String = this + "s"): String = if (count == 1) this else plural
 fun String.count(count: Int, plural: String = this + "s"): String = "$count ${plural(count, plural)}"
+fun String.boldCount(count: Int, plural: String = this + "s"): String = "**$count** ${plural(count, plural)}"
 
 fun String.urlEncode(): String = URLEncoder.encode(this, "UTF-8")
 
