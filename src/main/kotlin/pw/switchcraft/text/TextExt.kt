@@ -63,5 +63,6 @@ fun MutableText.callback(callback: (CommandContext<ServerCommandSource>) -> Unit
   runCommand(makeCommand(callback))
 
 // Common text patterns
+const val MID_GREEN = 0x2BD52B
 fun success(): MutableText = of("", GREEN) + of("Success! ", DARK_GREEN)
 fun copyHint(): MutableText = of("Click to copy to clipboard.")
