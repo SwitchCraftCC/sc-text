@@ -8,10 +8,10 @@ import pw.switchcraft.text.font.FontCalculator
 import pw.switchcraft.text.pagination.PaginationHandler
 
 object ScText : ModInitializer {
-  val LOG: Logger = LoggerFactory.getLogger("ScText")
+  val log: Logger = LoggerFactory.getLogger("ScText")
 
   override fun onInitialize() {
-    LOG.info("sc-text initializing")
+    log.info("sc-text initializing")
 
     FontCalculator.init()
 

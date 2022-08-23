@@ -1,0 +1,13 @@
+{
+  "providers": [
+    {
+      "type": "bitmap",
+      "file": "minecraft:font/sc-text.png",
+      "height": 8,
+      "ascent": 7,
+      "chars": [
+        "\ue000\ue001\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000\u0000"
+      ]
+    }
+  ]
+}

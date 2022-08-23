@@ -4,7 +4,7 @@
   "version": "${version}",
 
   "name": "SwitchCraft Text Utility",
-  "description": "Required companion mod for the SwitchCraft Minecraft server. This mod is for exclusive distribution by the SwitchCraft Modpack. All rights reserved.",
+  "description": "Required companion mod for the SwitchCraft Minecraft server.",
   "authors": [
     "SwitchCraft",
     "Lemmmy"
@@ -13,7 +13,7 @@
     "homepage": "https://switchcraft.pw/"
   },
 
-  "license": "UNLICENSED",
+  "license": "MIT",
 
   "entrypoints": {
     "main": [

@@ -11,6 +11,7 @@ import net.minecraft.util.Formatting
 import net.minecraft.util.Formatting.*
 import pw.switchcraft.text.CallbackCommand.makeCommand
 import java.net.URL
+import java.util.*
 
 fun of(text: String?, formatting: List<Formatting>): MutableText = of(text, *formatting.toTypedArray())
 fun of(text: String?, vararg formatting: Formatting): MutableText = Text.literal(text ?: "").formatted(*formatting)
@@ -63,6 +64,14 @@ fun MutableText.callback(callback: (CommandContext<ServerCommandSource>) -> Unit
   runCommand(makeCommand(callback))
 
 // Common text patterns
+const val KRIST_SYMBOL = "\ue000"
+const val SMALL_SPACE = "\ue001"
+
 const val MID_GREEN = 0x2BD52B
 fun success(): MutableText = of("", GREEN) + of("Success! ", DARK_GREEN)
 fun copyHint(): MutableText = of("Click to copy to clipboard.")
+
+val kristFormatting = arrayOf(GREEN)
+fun formatKristValue(value: Int, long: Boolean = false, vararg formatting: Formatting = kristFormatting): MutableText =
+  of("%s%,d%s".format(Locale.ENGLISH, KRIST_SYMBOL, value, if (long) " KST" else ""), *formatting)
+
