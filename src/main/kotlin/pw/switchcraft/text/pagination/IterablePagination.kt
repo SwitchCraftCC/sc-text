@@ -28,7 +28,7 @@ internal class IterablePagination(
     if (!countIterator.hasNext()) throw PAGE_END_EXCEPTION.create()
     if (page < 1) throw PAGE_TOO_LOW_EXCEPTION.create(page)
 
-    if (page <= lastPage) throw PAGE_BACKWARDS_EXCEPTION.create()
+    if (page < lastPage) throw PAGE_BACKWARDS_EXCEPTION.create()
     else if (page > lastPage + 1) lines(page - 1) // Force iteration
     this.lastPage = page
 
