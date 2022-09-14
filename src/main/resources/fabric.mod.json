@@ -3,8 +3,8 @@
   "id": "sc-text",
   "version": "${version}",
 
-  "name": "SwitchCraft Text Utility",
-  "description": "Required companion mod for the SwitchCraft Minecraft server.",
+  "name": "SwitchCraft Text Library",
+  "description": "Required dependency mod for SwitchCraft mods.",
   "authors": [
     "SwitchCraft",
     "Lemmmy"
@@ -14,6 +14,22 @@
   },
 
   "license": "MIT",
+  "icon": "assets/sc-text/icon.png",
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "switchcraft.discord": "https://discord.switchcraft.pw"
+      },
+      "badges": ["library"],
+      "parent": {
+        "id": "switchcraft",
+        "name": "SwitchCraft",
+        "url": "https://switchcraft.pw",
+        "icon": "assets/sc-text/icon.png"
+      }
+    }
+  },
 
   "entrypoints": {
     "main": [
