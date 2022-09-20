@@ -75,3 +75,5 @@ val kristFormatting = arrayOf(GREEN)
 fun formatKristValue(value: Int, long: Boolean = false, vararg formatting: Formatting = kristFormatting): MutableText =
   of("%s%,d%s".format(Locale.ENGLISH, KRIST_SYMBOL, value, if (long) " KST" else ""), *formatting)
 
+fun formatKristValue(value: Int, long: Boolean = false, formatting: List<Formatting>)
+  = formatKristValue(value, long, *formatting.toTypedArray())
