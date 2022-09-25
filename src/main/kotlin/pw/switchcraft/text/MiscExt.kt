@@ -33,6 +33,8 @@ fun String.urlToText(contents: Text? = null): MutableText {
 
 fun URL.toText(contents: Text? = null): MutableText = toString().urlToText(contents)
 
+fun Boolean.toText(): MutableText = if (this) of("enabled").color(MID_GREEN) else of("disabled", RED)
+
 // Date formatting - TODO: Add more formats, utilities for Text with hover (give full ISO-8601 timestamp)
 val DATE_FORMAT_LONG: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z")
 fun ZonedDateTime.formatScLong(): String = format(DATE_FORMAT_LONG)
