@@ -6,6 +6,9 @@ plugins {
 
   val kotlinVersion: String by System.getProperties()
   kotlin("jvm").version(kotlinVersion)
+
+  id("maven-publish")
+  id("signing")
 }
 
 val modVersion: String by project
@@ -19,6 +22,8 @@ val fabricKotlinVersion: String by project
 val fabricVersion: String by project
 
 val archivesBaseName = "sc-text"
+version = modVersion
+group = mavenGroup
 
 tasks.withType<KotlinCompile>().configureEach {
   kotlinOptions {
@@ -70,5 +75,27 @@ tasks {
 
   loom {
     accessWidenerPath.set(file("src/main/resources/sc-text.accesswidener"))
+  }
+}
+
+publishing {
+  publications {
+    register("mavenJava", MavenPublication::class) {
+      from(components["java"])
+    }
+  }
+
+  repositories {
+    maven {
+      name = "lemmmyRepo"
+      url = uri("https://repo.lem.sh/releases")
+      credentials {
+        username = System.getenv("MAVEN_USERNAME")
+        password = System.getenv("MAVEN_PASSWORD")
+      }
+      authentication {
+        create<BasicAuthentication>("basic")
+      }
+    }
   }
 }
