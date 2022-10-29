@@ -9,6 +9,7 @@ import net.minecraft.util.LowercaseEnumTypeAdapterFactory
 import org.apache.commons.lang3.time.DurationFormatUtils
 import java.net.URL
 import java.net.URLEncoder
+import java.time.LocalDateTime
 import java.time.ZonedDateTime
 import java.time.format.DateTimeFormatter
 import java.util.*
@@ -37,6 +38,7 @@ fun Boolean.toText(): MutableText = if (this) of("enabled").color(MID_GREEN) els
 
 // Date formatting - TODO: Add more formats, utilities for Text with hover (give full ISO-8601 timestamp)
 val DATE_FORMAT_LONG: DateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss Z")
+fun LocalDateTime.formatScLong(): String = format(DATE_FORMAT_LONG)
 fun ZonedDateTime.formatScLong(): String = format(DATE_FORMAT_LONG)
 
 fun ZonedDateTime.formatDurationWords(): String {
