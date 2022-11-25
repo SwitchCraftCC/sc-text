@@ -43,7 +43,7 @@ object GlyphSizesTest {
     RenderSystem.enableBlend()
     RenderSystem.disableTexture()
     RenderSystem.defaultBlendFunc()
-    RenderSystem.setShader(GameRenderer::getPositionColorShader)
+    RenderSystem.setShader(GameRenderer::getPositionColorProgram)
 
     buffer.begin(VertexFormat.DrawMode.QUADS, VertexFormats.POSITION_COLOR)
     text.forEachIndexed { i, char ->
