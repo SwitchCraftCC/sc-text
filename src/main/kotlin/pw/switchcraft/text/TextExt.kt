@@ -59,10 +59,14 @@ fun runnableCommand(text: String?, vararg formatting: Formatting = linkFormattin
 fun suggestedCommand(text: String?, vararg formatting: Formatting = linkFormatting, cmd: String? = text): MutableText =
   of(text, *formatting).suggestCommand(cmd).hover(of("Click to suggest: ") + of(cmd, AQUA))
 
-fun MutableText.callback(owner: UUID? = null, name: String? = null, callback: CallbackFn): MutableText =
-  runCommand(makeCommand(owner, name, callback))
-fun MutableText.callback(owner: ServerPlayerEntity? = null, name: String? = null, callback: CallbackFn): MutableText =
-  callback(owner?.uuid, name, callback)
+fun MutableText.callback(owner: UUID? = null, name: String? = null, singleUse: Boolean = true,
+                         callback: CallbackFn): MutableText =
+  runCommand(makeCommand(owner, name, singleUse, callback))
+
+@JvmOverloads
+fun MutableText.callback(owner: ServerPlayerEntity? = null, name: String? = null, singleUse: Boolean = true,
+                         callback: CallbackFn): MutableText =
+  callback(owner?.uuid, name, singleUse, callback)
 
 // Common text patterns
 const val KRIST_SYMBOL = "\ue000"

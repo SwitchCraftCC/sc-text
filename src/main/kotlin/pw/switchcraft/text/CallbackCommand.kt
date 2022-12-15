@@ -13,12 +13,14 @@ import net.minecraft.server.command.CommandManager.literal
 import net.minecraft.server.command.ServerCommandSource
 import java.time.Duration
 import java.util.*
+import java.util.function.Consumer
 
-typealias CallbackFn = (CommandContext<ServerCommandSource>) -> Unit
+typealias CallbackFn = Consumer<CommandContext<ServerCommandSource>>
 data class Callback(
   val fn: CallbackFn,
   val owner: UUID? = null,
-  val name: String? = null
+  val name: String? = null,
+  val singleUse: Boolean = true
 )
 
 object CallbackCommand {
@@ -31,14 +33,14 @@ object CallbackCommand {
 
   fun lookupCallback(id: UUID): Callback? = callbacks.getIfPresent(id)
 
-  fun register(owner: UUID? = null, name: String? = null, callback: CallbackFn): UUID {
+  fun register(owner: UUID? = null, name: String? = null, singleUse: Boolean = true, callback: CallbackFn): UUID {
     val id = UUID.randomUUID()
-    callbacks.put(id, Callback(callback, owner, name))
+    callbacks.put(id, Callback(callback, owner, name, singleUse))
     return id
   }
 
-  fun makeCommand(owner: UUID? = null, name: String? = null, callback: CallbackFn) =
-    register(owner, name, callback).let { "/sc-text:callback $it" }
+  fun makeCommand(owner: UUID? = null, name: String? = null, singleUse: Boolean = true, callback: CallbackFn) =
+    register(owner, name, singleUse, callback).let { "/sc-text:callback $it" }
 
   internal fun register(dispatcher: CommandDispatcher<ServerCommandSource?>) {
     dispatcher.register(literal("sc-text:callback")
@@ -51,9 +53,9 @@ object CallbackCommand {
             throw INVALID_OWNER_EXCEPTION.create()
           }
 
-          callback.fn.invoke(ctx)
+          callback.fn.accept(ctx)
 
-          callbacks.invalidate(id)
+          if (callback.singleUse) callbacks.invalidate(id)
           SINGLE_SUCCESS
         }))
   }
