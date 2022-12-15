@@ -1,0 +1,60 @@
+{
+  "schemaVersion": 1,
+  "id": "sc-text",
+  "version": "${version}",
+
+  "name": "SwitchCraft Text Library",
+  "description": "Required dependency mod for SwitchCraft mods.",
+  "authors": [
+    "SwitchCraft",
+    "Lemmmy"
+  ],
+  "contact": {
+    "homepage": "https://sc3.io/"
+  },
+
+  "license": "MIT",
+  "icon": "assets/sc-text/icon.png",
+
+  "custom": {
+    "modmenu": {
+      "links": {
+        "switchcraft.discord": "https://discord.sc3.io"
+      },
+      "badges": ["library"],
+      "parent": {
+        "id": "switchcraft",
+        "name": "SwitchCraft",
+        "url": "https://sc3.io",
+        "icon": "assets/sc-text/icon.png"
+      }
+    }
+  },
+
+  "entrypoints": {
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "pw.switchcraft.text.ScText"
+      }
+    ],
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "pw.switchcraft.text.ScTextClient"
+      }
+    ]
+  },
+  "mixins": [
+    "sc-text.mixins.json"
+  ],
+  "accessWidener": "sc-text.accesswidener",
+
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_target_version}",
+    "java": ">=17",
+    "fabric-language-kotlin": ">=${fabric_kotlin_version}"
+  }
+}
