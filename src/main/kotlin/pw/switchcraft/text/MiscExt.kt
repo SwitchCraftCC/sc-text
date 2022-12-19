@@ -4,7 +4,8 @@ import com.google.gson.GsonBuilder
 import net.minecraft.text.MutableText
 import net.minecraft.text.Style
 import net.minecraft.text.Text
-import net.minecraft.util.Formatting.*
+import net.minecraft.util.Formatting.AQUA
+import net.minecraft.util.Formatting.RED
 import net.minecraft.util.LowercaseEnumTypeAdapterFactory
 import org.apache.commons.lang3.time.DurationFormatUtils
 import java.net.URL
@@ -27,8 +28,8 @@ fun String.urlToText(contents: Text? = null): MutableText {
     if (contents is MutableText) contents else contents.copy()
   } else of(this)
 
-  return base.formatted(UNDERLINE, BLUE)
-    .hover(of("Click to visit $this", AQUA))
+  return base.formatted(*linkFormatting)
+    .hover(of("Click to visit: ") + of(this).formatted(AQUA))
     .openUrl(this)
 }
 
