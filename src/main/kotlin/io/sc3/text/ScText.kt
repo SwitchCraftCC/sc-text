@@ -1,11 +1,11 @@
-package pw.switchcraft.text
+package io.sc3.text
 
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import pw.switchcraft.text.font.FontCalculator
-import pw.switchcraft.text.pagination.PaginationHandler
+import io.sc3.text.font.FontCalculator
+import io.sc3.text.pagination.PaginationHandler
 
 object ScText : ModInitializer {
   val log: Logger = LoggerFactory.getLogger("ScText")

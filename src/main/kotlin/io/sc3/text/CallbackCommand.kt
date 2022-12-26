@@ -1,4 +1,4 @@
-package pw.switchcraft.text
+package io.sc3.text
 
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder

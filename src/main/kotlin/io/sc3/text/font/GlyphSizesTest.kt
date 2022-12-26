@@ -1,4 +1,4 @@
-package pw.switchcraft.text.font
+package io.sc3.text.font
 
 import com.mojang.blaze3d.systems.RenderSystem
 import com.mojang.brigadier.Command
@@ -14,7 +14,7 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.render.*
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.Formatting.GREEN
-import pw.switchcraft.text.of
+import io.sc3.text.of
 
 object GlyphSizesTest {
   private var testing = false

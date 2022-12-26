@@ -1,4 +1,4 @@
-package pw.switchcraft.text
+package io.sc3.text
 
 import com.google.gson.GsonBuilder
 import net.minecraft.text.MutableText

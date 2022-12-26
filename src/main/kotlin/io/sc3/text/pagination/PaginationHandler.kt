@@ -1,4 +1,4 @@
-package pw.switchcraft.text.pagination
+package io.sc3.text.pagination
 
 import com.google.common.cache.Cache
 import com.google.common.cache.CacheBuilder
@@ -15,7 +15,7 @@ import net.minecraft.command.argument.UuidArgumentType.uuid
 import net.minecraft.server.command.CommandManager.argument
 import net.minecraft.server.command.CommandManager.literal
 import net.minecraft.server.command.ServerCommandSource
-import pw.switchcraft.text.of
+import io.sc3.text.of
 import java.time.Duration
 import java.util.*
 import java.util.concurrent.ConcurrentHashMap

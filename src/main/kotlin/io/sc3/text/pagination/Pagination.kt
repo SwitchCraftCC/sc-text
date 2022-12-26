@@ -1,11 +1,11 @@
-package pw.switchcraft.text.pagination
+package io.sc3.text.pagination
 
 import com.google.common.collect.ImmutableList
 import com.google.common.collect.Maps
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
-import pw.switchcraft.text.font.FontCalculator
-import pw.switchcraft.text.of
+import io.sc3.text.font.FontCalculator
+import io.sc3.text.of
 import java.util.stream.Collectors
 import java.util.stream.StreamSupport
 

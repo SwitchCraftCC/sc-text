@@ -35,13 +35,13 @@
     "main": [
       {
         "adapter": "kotlin",
-        "value": "pw.switchcraft.text.ScText"
+        "value": "io.sc3.text.ScText"
       }
     ],
     "client": [
       {
         "adapter": "kotlin",
-        "value": "pw.switchcraft.text.ScTextClient"
+        "value": "io.sc3.text.ScTextClient"
       }
     ]
   },

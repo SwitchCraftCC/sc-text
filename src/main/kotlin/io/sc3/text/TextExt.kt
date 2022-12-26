@@ -1,4 +1,4 @@
-package pw.switchcraft.text
+package io.sc3.text
 
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.*
@@ -8,7 +8,7 @@ import net.minecraft.text.HoverEvent.EntityContent
 import net.minecraft.text.HoverEvent.ItemStackContent
 import net.minecraft.util.Formatting
 import net.minecraft.util.Formatting.*
-import pw.switchcraft.text.CallbackCommand.makeCommand
+import io.sc3.text.CallbackCommand.makeCommand
 import java.net.URL
 import java.util.*
 

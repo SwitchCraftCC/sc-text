@@ -1,4 +1,4 @@
-package pw.switchcraft.text.font
+package io.sc3.text.font
 
 import com.mojang.brigadier.Command.SINGLE_SUCCESS
 import com.mojang.brigadier.CommandDispatcher

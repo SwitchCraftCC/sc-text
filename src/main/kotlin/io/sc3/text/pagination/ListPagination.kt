@@ -1,10 +1,10 @@
-package pw.switchcraft.text.pagination
+package io.sc3.text.pagination
 
 import com.mojang.brigadier.exceptions.Dynamic2CommandExceptionType
 import com.mojang.brigadier.exceptions.DynamicCommandExceptionType
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
-import pw.switchcraft.text.of
+import io.sc3.text.of
 
 /**
  * Based on the Sponge implementation of Pagination, originally licensed under MIT.

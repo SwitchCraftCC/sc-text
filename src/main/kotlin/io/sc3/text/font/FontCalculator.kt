@@ -1,4 +1,4 @@
-package pw.switchcraft.text.font
+package io.sc3.text.font
 
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper
 import net.fabricmc.fabric.api.resource.SimpleSynchronousResourceReloadListener
@@ -11,7 +11,7 @@ import net.minecraft.text.Text
 import net.minecraft.util.Identifier
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import pw.switchcraft.text.of
+import io.sc3.text.of
 import kotlin.math.ceil
 import kotlin.math.floor
 

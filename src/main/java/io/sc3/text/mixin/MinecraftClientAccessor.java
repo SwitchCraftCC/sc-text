@@ -1,4 +1,4 @@
-package pw.switchcraft.text.mixin;
+package io.sc3.text.mixin;
 
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.font.FontManager;

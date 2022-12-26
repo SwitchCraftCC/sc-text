@@ -1,9 +1,9 @@
-package pw.switchcraft.text
+package io.sc3.text
 
+import io.sc3.text.font.GlyphSizesCommand
+import io.sc3.text.font.GlyphSizesTest
 import net.fabricmc.api.ClientModInitializer
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback
-import pw.switchcraft.text.font.GlyphSizesCommand
-import pw.switchcraft.text.font.GlyphSizesTest
 
 object ScTextClient : ClientModInitializer {
   override fun onInitializeClient() {

@@ -1,13 +1,13 @@
-package pw.switchcraft.text.pagination
+package io.sc3.text.pagination
 
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.MutableText
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting.BLUE
 import net.minecraft.util.Formatting.UNDERLINE
-import pw.switchcraft.text.*
-import pw.switchcraft.text.font.FontCalculator
-import pw.switchcraft.text.font.FontCalculator.lineCount
+import io.sc3.text.*
+import io.sc3.text.font.FontCalculator
+import io.sc3.text.font.FontCalculator.lineCount
 import java.util.*
 
 /**

@@ -12,7 +12,7 @@ your modpack.
 
 ## Usage
 
-![](https://repo.lem.sh/api/badge/latest/releases/pw/switchcraft/sc-text?name=Latest%20version)
+![](https://repo.lem.sh/api/badge/latest/releases/io/sc3/sc-text?name=Latest%20version)
 ```properties
 # gradle.properties
 scTextVersion = <version>
@@ -26,13 +26,13 @@ repositories {
   maven {
     url = uri("https://repo.lem.sh/releases")
     content {
-      includeGroup("pw.switchcraft")
+      includeGroup("io.sc3")
     }
   }
 }
 
 dependencies {
-  modImplementation(include("pw.switchcraft", "sc-text", scTextVersion))
+  modImplementation(include("io.sc3", "sc-text", scTextVersion))
 }
 ```
 

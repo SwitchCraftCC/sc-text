@@ -1,4 +1,4 @@
-package pw.switchcraft.text.font
+package io.sc3.text.font
 
 import net.minecraft.text.CharacterVisitor
 import net.minecraft.text.StringVisitable
