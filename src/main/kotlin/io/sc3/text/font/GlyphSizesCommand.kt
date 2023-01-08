@@ -4,7 +4,7 @@ import com.mojang.brigadier.Command.SINGLE_SUCCESS
 import com.mojang.brigadier.CommandDispatcher
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
-import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.minecraft.client.MinecraftClient
 import net.minecraft.client.font.UnicodeTextureFont
@@ -52,10 +52,12 @@ object GlyphSizesCommand {
   }
 
   internal fun register(dispatcher: CommandDispatcher<FabricClientCommandSource>) {
-    dispatcher.register(ClientCommandManager.literal("sc-text:gen_glyph_sizes").executes {
-      genGlyphSizes()
-      SINGLE_SUCCESS
-    })
+    dispatcher.register(literal("sc-text:gen_glyph_sizes")
+      .requires { it.client.isInSingleplayer && it.hasPermissionLevel(3) }
+      .executes {
+        genGlyphSizes()
+        SINGLE_SUCCESS
+      })
   }
 
   var LOG: Logger = LoggerFactory.getLogger("ScText/GlyphSizesCommand")

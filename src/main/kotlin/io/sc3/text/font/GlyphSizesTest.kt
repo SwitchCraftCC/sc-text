@@ -5,6 +5,7 @@ import com.mojang.brigadier.Command
 import com.mojang.brigadier.CommandDispatcher
 import com.mojang.brigadier.arguments.StringArgumentType.getString
 import com.mojang.brigadier.arguments.StringArgumentType.greedyString
+import io.sc3.text.of
 import net.fabricmc.api.EnvType
 import net.fabricmc.api.Environment
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager
@@ -14,7 +15,6 @@ import net.minecraft.client.MinecraftClient
 import net.minecraft.client.render.*
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.Formatting.GREEN
-import io.sc3.text.of
 
 object GlyphSizesTest {
   private var testing = false
@@ -89,6 +89,7 @@ object GlyphSizesTest {
 
   internal fun register(dispatcher: CommandDispatcher<FabricClientCommandSource>) {
     dispatcher.register(ClientCommandManager.literal("sc-text:test_glyph_sizes")
+      .requires { it.client.isInSingleplayer && it.hasPermissionLevel(3) }
       .then(ClientCommandManager.argument("text", greedyString())
         .executes {
           val text = getString(it, "text")
