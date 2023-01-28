@@ -1,13 +1,14 @@
 package io.sc3.text.pagination
 
+import com.mojang.brigadier.exceptions.SimpleCommandExceptionType
+import io.sc3.text.*
+import io.sc3.text.font.FontCalculator
+import io.sc3.text.font.FontCalculator.lineCount
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.MutableText
 import net.minecraft.text.Text
 import net.minecraft.util.Formatting.BLUE
 import net.minecraft.util.Formatting.UNDERLINE
-import io.sc3.text.*
-import io.sc3.text.font.FontCalculator
-import io.sc3.text.font.FontCalculator.lineCount
 import java.util.*
 
 /**
@@ -44,12 +45,19 @@ abstract class ActivePagination(
   abstract fun hasNext(page: Int): Boolean
   abstract fun totalPages(): Int
 
-  open fun nextPage() { specificPage(currentPage + 1) }
-  open fun previousPage() { specificPage(currentPage - 1) }
+  open fun nextPage() {
+    if (!hasNext(currentPage)) throw PAGE_NO_NEXT_EXCEPTION.create()
+    specificPage(currentPage + 1)
+  }
+
+  open fun previousPage() {
+    if (!hasPrevious(currentPage)) throw PAGE_NO_PREV_EXCEPTION.create()
+    specificPage(currentPage - 1)
+  }
 
   /** Changes the page to the specified page and sends it to the player. */
   fun specificPage(page: Int) {
-    currentPage = page
+    currentPage = page.coerceAtLeast(1)
 
     val out = mutableListOf<Text>()
 
@@ -107,6 +115,9 @@ abstract class ActivePagination(
   }
 
   companion object {
+    private val PAGE_NO_PREV_EXCEPTION = SimpleCommandExceptionType(of("There is no previous page."))
+    private val PAGE_NO_NEXT_EXCEPTION = SimpleCommandExceptionType(of("There is no next page."))
+
     fun pageText(id: UUID, page: String, text: String = page, formatting: Boolean = true): MutableText
       = (if (formatting) of(text, BLUE, UNDERLINE) else of(text))
         .runCommand("/sc-text:pagination $id $page")
