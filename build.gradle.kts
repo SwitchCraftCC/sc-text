@@ -1,7 +1,7 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  id("fabric-loom") version "1.0-SNAPSHOT"
+  id("fabric-loom") version "1.1-SNAPSHOT"
   id("io.github.juuxel.loom-quiltflower") version "1.7.3"
 
   val kotlinVersion: String by System.getProperties()
