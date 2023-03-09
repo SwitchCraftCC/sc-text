@@ -1,5 +1,6 @@
 package io.sc3.text
 
+import io.sc3.text.CallbackCommand.makeCommand
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.text.*
 import net.minecraft.text.ClickEvent.Action.*
@@ -8,7 +9,6 @@ import net.minecraft.text.HoverEvent.EntityContent
 import net.minecraft.text.HoverEvent.ItemStackContent
 import net.minecraft.util.Formatting
 import net.minecraft.util.Formatting.*
-import io.sc3.text.CallbackCommand.makeCommand
 import java.net.URL
 import java.util.*
 
@@ -82,3 +82,14 @@ fun formatKristValue(value: Int, long: Boolean = false, vararg formatting: Forma
 
 fun formatKristValue(value: Int, long: Boolean = false, formatting: List<Formatting>)
   = formatKristValue(value, long, *formatting.toTypedArray())
+
+fun Iterable<Text>.join(sep: Text = of(", ")): MutableText {
+  val it = iterator()
+  if (!it.hasNext()) return Text.empty()
+
+  val result = it.next().copy()
+  while (it.hasNext()) {
+    result + sep + it.next()
+  }
+  return result
+}
