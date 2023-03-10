@@ -12,6 +12,7 @@ import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback
 import net.minecraft.client.MinecraftClient
+import net.minecraft.client.font.TextRenderer.TextLayerType
 import net.minecraft.client.render.*
 import net.minecraft.client.util.math.MatrixStack
 import net.minecraft.util.Formatting.GREEN
@@ -36,12 +37,11 @@ object GlyphSizesTest {
     val matrix = matrices.peek().positionMatrix
     val textRenderer = MinecraftClient.getInstance().textRenderer
     val immediate = VertexConsumerProvider.immediate(buffer)
-    textRenderer.draw(text, x.toFloat(), y.toFloat(), 0xFF0000, false, matrix, immediate, false, 0,
+    textRenderer.draw(text, x.toFloat(), y.toFloat(), 0xFF0000, false, matrix, immediate, TextLayerType.NORMAL, 0,
       LightmapTextureManager.MAX_LIGHT_COORDINATE)
     immediate.draw()
 
     RenderSystem.enableBlend()
-    RenderSystem.disableTexture()
     RenderSystem.defaultBlendFunc()
     RenderSystem.setShader(GameRenderer::getPositionColorProgram)
 
@@ -52,7 +52,6 @@ object GlyphSizesTest {
     }
     tessellator.draw()
 
-    RenderSystem.enableTexture()
     RenderSystem.disableBlend()
   }
 
