@@ -59,6 +59,11 @@ fun runnableCommand(text: String?, vararg formatting: Formatting = linkFormattin
 fun suggestedCommand(text: String?, vararg formatting: Formatting = linkFormatting, cmd: String? = text): MutableText =
   of(text, *formatting).suggestCommand(cmd).hover(of("Click to suggest: ") + of(cmd, AQUA))
 
+fun token(token: String, vararg formatting: Formatting = linkFormatting): MutableText =
+  MutableText.of(TokenTextContent(token))
+    .formatted(*formatting)
+    .hover(copyHint()).copyToClipboard(token)
+
 fun MutableText.callback(owner: UUID? = null, name: String? = null, singleUse: Boolean = true,
                          callback: CallbackFn): MutableText =
   runCommand(makeCommand(owner, name, singleUse, callback))

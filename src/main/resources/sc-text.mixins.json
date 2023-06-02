@@ -4,6 +4,7 @@
   "package": "io.sc3.text.mixin",
   "compatibilityLevel": "JAVA_17",
   "mixins": [
+    "TextSerializerMixin"
   ],
   "client": [
     "MinecraftClientAccessor"
