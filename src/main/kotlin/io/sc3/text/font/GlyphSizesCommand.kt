@@ -7,7 +7,7 @@ import net.fabricmc.api.Environment
 import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager.literal
 import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource
 import net.minecraft.client.MinecraftClient
-import net.minecraft.client.font.UnicodeTextureFont
+import net.minecraft.client.font.UnihexFont
 import net.minecraft.util.Identifier
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
@@ -28,7 +28,7 @@ object GlyphSizesCommand {
         if (it > 65535) return@glyphs
         val glyph = font.getGlyph(it) ?: return@glyphs
 
-        val alreadyProvided = widths[it] != 0.toByte() && font is UnicodeTextureFont
+        val alreadyProvided = widths[it] != 0.toByte() && font is UnihexFont
         if (alreadyProvided) return@glyphs
 
         val advance = glyph.advance.roundToInt().toByte()

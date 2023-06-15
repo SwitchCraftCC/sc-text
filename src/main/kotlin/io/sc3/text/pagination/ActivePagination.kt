@@ -69,7 +69,7 @@ abstract class ActivePagination(
     out.add(calculateFooter(page))
     if (footer != null) out.add(footer)
 
-    out.forEach { src.sendFeedback(it, false) }
+    out.forEach { src.sendFeedback({ it }, false) }
   }
 
   private fun calculateFooter(page: Int): Text {
