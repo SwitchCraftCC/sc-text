@@ -48,6 +48,13 @@ fun ZonedDateTime.formatDurationWords(): String {
   return DurationFormatUtils.formatDurationWords(duration, true, true)
 }
 
+fun ZonedDateTime.formatDurationWordsShort(): String {
+  // Takes the biggest two units (e.g. 24 hours 30 minutes)
+  val base = formatDurationWords()
+  val split = base.split(" ")
+  return split.take(4).joinToString(" ")
+}
+
 // This one isn't strictly Text, but it's very often useful anyway
 fun tryParseUuid(string: String): UUID? = try {
   UUID.fromString(string)
